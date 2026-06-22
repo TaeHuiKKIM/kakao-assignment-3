@@ -19,3 +19,31 @@ export function getWeekDays(date: Date): Date[] {
   }
   return weekDays;
 }
+
+export function getMonthDays(year: number, month: number): Date[][] {
+  const firstDayOfMonth = new Date(year, month, 1);
+  const firstDayOfWeek = firstDayOfMonth.getDay();
+  
+  // Start from Monday (0 is Sunday)
+  const diffToMonday = firstDayOfWeek === 0 ? -6 : 1 - firstDayOfWeek;
+  const startDate = new Date(year, month, 1 + diffToMonday);
+  
+  const weeks: Date[][] = [];
+  const currentDate = new Date(startDate);
+  
+  while (true) {
+    const week: Date[] = [];
+    for (let i = 0; i < 7; i++) {
+      week.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    weeks.push(week);
+    
+    // Break if the currentDate is now in the next month
+    if (currentDate.getMonth() !== month) {
+      break;
+    }
+  }
+  
+  return weeks;
+}

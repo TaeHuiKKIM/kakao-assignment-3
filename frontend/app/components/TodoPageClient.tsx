@@ -3,6 +3,7 @@
 import { useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import WeeklyCalendar from './WeeklyCalendar';
+import MonthlyCalendar from './MonthlyCalendar';
 import TodoItem from './TodoItem';
 import axios from 'axios';
 import { formatDate } from '../utils/date';
@@ -11,6 +12,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const [viewMode, setViewMode] = useState<'weekly' | 'monthly'>('weekly');
 
   const currentFilter = searchParams.get('filter') || 'all';
   const currentSearch = searchParams.get('search') || '';
@@ -54,11 +56,36 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
 
   return (
     <div className="flex flex-col flex-1 h-full overflow-hidden space-y-3 pb-1">
-      <WeeklyCalendar 
-        selectedDate={selectedDate} 
-        setSelectedDate={setSelectedDate} 
-        todos={initialTodos} 
-      />
+      <div className="flex justify-end shrink-0">
+        <div className="flex items-center space-x-1 bg-white/40 backdrop-blur-md rounded-xl p-1 shadow-sm border border-white/60">
+          <button
+            onClick={() => setViewMode('weekly')}
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${viewMode === 'weekly' ? 'bg-white shadow-sm text-primary' : 'text-gray-500 hover:text-gray-700 hover:bg-white/50'}`}
+          >
+            주간
+          </button>
+          <button
+            onClick={() => setViewMode('monthly')}
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${viewMode === 'monthly' ? 'bg-white shadow-sm text-primary' : 'text-gray-500 hover:text-gray-700 hover:bg-white/50'}`}
+          >
+            월간
+          </button>
+        </div>
+      </div>
+
+      {viewMode === 'weekly' ? (
+        <WeeklyCalendar 
+          selectedDate={selectedDate} 
+          setSelectedDate={setSelectedDate} 
+          todos={initialTodos} 
+        />
+      ) : (
+        <MonthlyCalendar 
+          selectedDate={selectedDate} 
+          setSelectedDate={setSelectedDate} 
+          todos={initialTodos} 
+        />
+      )}
 
       {/* 검색 및 필터 */}
       <div className="space-y-2 bg-white/40 backdrop-blur-md rounded-xl p-2.5 border border-white/60 shadow-sm shrink-0">
