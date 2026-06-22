@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
-export default function TodoItem({ todo, toggleTodo, deleteTodo }: { todo: any, toggleTodo: () => void, deleteTodo: () => void }) {
+export default memo(function TodoItem({ todo, toggleTodo, deleteTodo }: { todo: any, toggleTodo: () => void, deleteTodo: () => void }) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -49,4 +49,4 @@ export default function TodoItem({ todo, toggleTodo, deleteTodo }: { todo: any, 
       </div>
     </li>
   );
-}
+});

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useCallback, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import WeeklyCalendar from './WeeklyCalendar';
 import MonthlyCalendar from './MonthlyCalendar';
@@ -18,16 +18,16 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
   const currentSearch = searchParams.get('search') || '';
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleFilterChange = (filter: string) => {
+  const handleFilterChange = useCallback((filter: string) => {
     const params = new URLSearchParams(searchParams);
     if (filter === 'all') params.delete('filter');
     else params.set('filter', filter);
     startTransition(() => {
       router.push(`?${params.toString()}`);
     });
-  };
+  }, [searchParams, router]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value;
     const params = new URLSearchParams(searchParams);
     if (!search) params.delete('search');
@@ -35,24 +35,26 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
     startTransition(() => {
       router.push(`?${params.toString()}`);
     });
-  };
+  }, [searchParams, router]);
 
-  const toggleTodo = async (id: number, completed: boolean) => {
+  const toggleTodo = useCallback(async (id: number, completed: boolean) => {
     await axios.put(`/api/todos/${id}`, { completed: !completed });
     startTransition(() => {
       router.refresh();
     });
-  };
+  }, [router]);
 
-  const deleteTodo = async (id: number) => {
+  const deleteTodo = useCallback(async (id: number) => {
     await axios.delete(`/api/todos/${id}`);
     startTransition(() => {
       router.refresh();
     });
-  };
+  }, [router]);
 
   const dateStr = formatDate(selectedDate);
-  const filteredByDate = initialTodos.filter(t => t.date === dateStr || !t.date);
+  const filteredByDate = useMemo(() => {
+    return initialTodos.filter(t => t.date === dateStr || !t.date);
+  }, [initialTodos, dateStr]);
 
   return (
     <div className="flex flex-col flex-1 h-full overflow-hidden space-y-3 pb-1 min-h-0">
