@@ -53,7 +53,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
   const filteredByDate = initialTodos.filter(t => t.date === dateStr || !t.date);
 
   return (
-    <div className="flex flex-col h-full space-y-3">
+    <div className="flex flex-col flex-1 h-full overflow-hidden space-y-3 pb-1">
       <WeeklyCalendar 
         selectedDate={selectedDate} 
         setSelectedDate={setSelectedDate} 
