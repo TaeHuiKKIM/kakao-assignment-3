@@ -20,15 +20,15 @@ export default function WeeklyCalendar({ selectedDate, setSelectedDate, todos }:
   const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <div className="bg-white/40 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-white/60">
-      <div className="flex justify-between items-center mb-5">
-        <button onClick={handlePrevWeek} className="p-2 text-gray-500 hover:bg-white/60 hover:shadow rounded-full transition-all active:scale-95">
+    <div className="bg-white/40 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-white/60 shrink-0">
+      <div className="flex justify-between items-center mb-3">
+        <button onClick={handlePrevWeek} className="p-1 text-gray-500 hover:bg-white/60 hover:shadow rounded-full transition-all active:scale-95">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7"></path></svg>
         </button>
         <span className="font-extrabold text-lg text-gray-800 tracking-tight">
           {selectedDate.getFullYear()}년 {selectedDate.getMonth() + 1}월
         </span>
-        <button onClick={handleNextWeek} className="p-2 text-gray-500 hover:bg-white/60 hover:shadow rounded-full transition-all active:scale-95">
+        <button onClick={handleNextWeek} className="p-1 text-gray-500 hover:bg-white/60 hover:shadow rounded-full transition-all active:scale-95">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
@@ -45,7 +45,7 @@ export default function WeeklyCalendar({ selectedDate, setSelectedDate, todos }:
             <div 
               key={dateStr}
               onClick={() => setSelectedDate(day)}
-              className={`flex flex-col items-center justify-center py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+              className={`flex flex-col items-center justify-center py-2 rounded-xl cursor-pointer transition-all duration-300 ${
                 isSelected 
                   ? 'bg-gradient-to-b from-primary to-purple-600 text-white shadow-lg shadow-purple-500/40 transform scale-110' 
                   : 'bg-white/50 hover:bg-white hover:shadow-md text-gray-600 border border-white/40'
