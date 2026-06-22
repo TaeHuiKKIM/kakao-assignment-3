@@ -35,14 +35,16 @@ npm run dev
 
 ## 📂 주요 변경 사항 및 과제 목표 달성 현황
 
-### 필수 미션 달성 내용
-- **Next.js & FastAPI 분리**: 디렉토리 분리 및 독립적 구동 성공.
-- **API 연동**: FastAPI 기반 CRUD 로직과 Next.js 서버 컴포넌트(`actions.ts`), 라우트 핸들러(`route.ts`) 완벽 연동.
-- **Server vs Client 컴포넌트**: `page.tsx`는 서버 렌더링, `TodoItem`, 캘린더 등 인터랙션이 잦은 영역은 `"use client"` 분리.
-- **환경 변수 관리**: `.env.local` 파일 분리 완료.
-
-### 도전 미션 달성 내용
-- **서버 기반 필터링 및 검색**: 클라이언트의 배열 처리가 아닌 URL 파라미터(`?filter=...&search=...`)를 바탕으로 백엔드의 SQLAlchemy 쿼리로 데이터를 직접 제어하여 반환합니다. 새로고침해도 필터 상태가 완벽히 유지됩니다.
+### ✅ 체크리스트 (과제 요구사항 및 추가 구현)
+- [x] **React(Vite) 기반 Todo 앱을 Next.js App Router 구조로 마이그레이션** (`page.tsx`, `layout.tsx` 등 파일 기반 라우팅 적용)
+- [x] **Server Component와 Client Component의 명확한 역할 분리**
+- [x] **FastAPI로 Todo CRUD API 구현 및 Next.js `route.ts` 프록시 연동** (풀스택 흐름 구축)
+- [x] **서버 API 기반 데이터 흐름으로 전환** (초기 렌더링 시 Server Actions 활용)
+- [x] **환경 변수 관리** (`.env.local` 분리 완벽 적용)
+- [x] **서버 기반 필터링 및 검색 로직 (도전 과제)**: 클라이언트 필터링이 아닌 URL 쿼리와 DB 쿼리를 연동하여 새로고침 시에도 상태 완벽 유지
+- [x] **글래스모피즘(Glassmorphism) 및 반응형 UI/UX 고도화**: 그라데이션 및 CSS 필터를 활용한 프리미엄 디자인 적용, 데스크탑 스크롤 뷰 완벽 대응
+- [x] **주간/월간 캘린더 토글 기능 구현**: 월별 전체 일정을 콤팩트하게 파악할 수 있는 기능 커스텀 추가
+- [x] **Favicon 및 메타 정보 적용**: SEO 및 브라우저 탭 아이콘 사용자 정의 완료
 
 ---
 
