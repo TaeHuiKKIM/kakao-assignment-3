@@ -55,7 +55,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
   const filteredByDate = initialTodos.filter(t => t.date === dateStr || !t.date);
 
   return (
-    <div className="flex flex-col flex-1 h-full overflow-hidden space-y-3 pb-1">
+    <div className="flex flex-col flex-1 h-full overflow-hidden space-y-3 pb-1 min-h-0">
       <div className="flex justify-end shrink-0">
         <div className="flex items-center space-x-1 bg-white/40 backdrop-blur-md rounded-xl p-1 shadow-sm border border-white/60">
           <button
@@ -117,7 +117,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
       </div>
 
       {/* 투두 목록 */}
-      <div className="flex-1 min-h-[100px] overflow-y-auto custom-scrollbar pr-1.5 relative bg-white/30 backdrop-blur-xl rounded-xl p-2 border border-white/50 shadow-sm">
+      <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-1.5 relative bg-white/30 backdrop-blur-xl rounded-xl p-2 border border-white/50 shadow-sm">
         {isPending && (
           <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
             <span className="text-primary text-sm font-bold animate-pulse">데이터 업데이트 중...</span>

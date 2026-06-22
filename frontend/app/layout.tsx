@@ -40,7 +40,7 @@ export default function RootLayout({
               <p className="text-[11px] font-medium text-gray-500 mt-0.5">Next.js + FastAPI 풀스택 스케줄러</p>
             </div>
           </header>
-          <main className="px-5 pb-5 pt-2 flex-1 overflow-hidden flex flex-col">
+          <main className="px-5 pb-5 pt-2 flex-1 overflow-hidden flex flex-col min-h-0">
             {children}
           </main>
         </div>
