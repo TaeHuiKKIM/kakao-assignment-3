@@ -31,16 +31,16 @@ export default function RootLayout({
         <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
 
         {/* Main App Container */}
-        <div className="w-full max-w-2xl h-[92vh] md:h-[85vh] bg-white/70 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 flex flex-col relative z-10 overflow-hidden transition-all duration-300">
-          <header className="px-8 pt-8 pb-4 shrink-0 flex items-center justify-between">
+        <div className="w-full max-w-xl h-[92vh] md:h-[85vh] bg-white/70 backdrop-blur-2xl rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 flex flex-col relative z-10 overflow-hidden transition-all duration-300">
+          <header className="px-6 pt-6 pb-3 shrink-0 flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 tracking-tight">
+              <h1 className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 tracking-tight">
                 My Todo
               </h1>
-              <p className="text-sm font-medium text-gray-500 mt-1">Next.js + FastAPI 풀스택 스케줄러</p>
+              <p className="text-xs font-medium text-gray-500 mt-0.5">Next.js + FastAPI 풀스택 스케줄러</p>
             </div>
           </header>
-          <main className="p-6 md:p-8 flex-1 overflow-hidden flex flex-col">
+          <main className="p-5 flex-1 overflow-hidden flex flex-col">
             {children}
           </main>
         </div>

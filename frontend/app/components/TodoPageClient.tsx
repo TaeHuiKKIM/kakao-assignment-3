@@ -53,7 +53,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
   const filteredByDate = initialTodos.filter(t => t.date === dateStr || !t.date);
 
   return (
-    <div className="flex flex-col h-full space-y-4">
+    <div className="flex flex-col h-full space-y-3">
       <WeeklyCalendar 
         selectedDate={selectedDate} 
         setSelectedDate={setSelectedDate} 
@@ -61,7 +61,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
       />
 
       {/* 검색 및 필터 */}
-      <div className="space-y-3 bg-white/40 backdrop-blur-md rounded-2xl p-3 border border-white/60 shadow-sm shrink-0">
+      <div className="space-y-2 bg-white/40 backdrop-blur-md rounded-xl p-2.5 border border-white/60 shadow-sm shrink-0">
         <input
           type="text"
           placeholder="검색어를 입력하세요..."
@@ -69,18 +69,18 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
           onChange={(e) => {
             handleSearchChange(e);
           }}
-          className="w-full bg-white/80 border border-gray-200/60 rounded-xl p-2 outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-inner"
+          className="w-full bg-white/80 border border-gray-200/60 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-inner"
         />
         
-        <div className="flex space-x-2 overflow-x-auto pb-1 custom-scrollbar">
+        <div className="flex space-x-2 overflow-x-auto pb-0.5 custom-scrollbar">
           {['all', 'active', 'completed'].map(f => (
             <button
               key={f}
               onClick={() => handleFilterChange(f)}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform active:scale-95 whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 transform active:scale-95 whitespace-nowrap ${
                 currentFilter === f 
-                  ? 'bg-gradient-to-r from-primary to-purple-500 text-white shadow-lg shadow-primary/30 scale-105' 
-                  : 'bg-white/70 text-gray-600 hover:bg-white hover:shadow border border-gray-200/50'
+                  ? 'bg-gradient-to-r from-primary to-purple-500 text-white shadow-md shadow-primary/30 scale-[1.02]' 
+                  : 'bg-white/70 text-gray-600 hover:bg-white hover:shadow-sm border border-gray-200/50'
               }`}
             >
               {f === 'all' ? '✨ 전체' : f === 'active' ? '🔥 진행 중' : '✅ 완료'}
@@ -90,19 +90,19 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
       </div>
 
       {/* 투두 목록 */}
-      <div className="flex-1 min-h-[150px] overflow-y-auto custom-scrollbar pr-2 relative bg-white/30 backdrop-blur-xl rounded-2xl p-3 border border-white/50 shadow-sm">
+      <div className="flex-1 min-h-[150px] overflow-y-auto custom-scrollbar pr-1.5 relative bg-white/30 backdrop-blur-xl rounded-xl p-2 border border-white/50 shadow-sm">
         {isPending && (
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">
-            <span className="text-primary font-bold animate-pulse">데이터 업데이트 중...</span>
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
+            <span className="text-primary text-sm font-bold animate-pulse">데이터 업데이트 중...</span>
           </div>
         )}
         {filteredByDate.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-3">
-            <div className="text-4xl">📭</div>
-            <p className="font-medium text-sm">할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>
+          <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-2">
+            <div className="text-3xl">📭</div>
+            <p className="font-medium text-xs">할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>
           </div>
         ) : (
-          <ul className="space-y-2">
+          <ul className="space-y-1.5">
             {filteredByDate.map((todo: any) => (
               <TodoItem 
                 key={todo.id} 
@@ -117,7 +117,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
 
       <button 
         onClick={() => router.push('/todos/new')}
-        className="w-full shrink-0 bg-gradient-to-r from-primary via-purple-500 to-pink-500 hover:opacity-90 text-white font-black text-lg py-3 rounded-2xl transition-all duration-300 shadow-lg shadow-purple-500/30 transform hover:-translate-y-1 active:scale-95"
+        className="w-full shrink-0 bg-gradient-to-r from-primary via-purple-500 to-pink-500 hover:opacity-90 text-white font-black text-sm py-2.5 rounded-xl transition-all duration-300 shadow-md shadow-purple-500/30 transform hover:-translate-y-0.5 active:scale-95"
       >
         + 새 할 일 추가하기
       </button>
