@@ -117,7 +117,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
       </div>
 
       {/* 투두 목록 */}
-      <div className="flex-1 min-h-[150px] overflow-y-auto custom-scrollbar pr-1.5 relative bg-white/30 backdrop-blur-xl rounded-xl p-2 border border-white/50 shadow-sm">
+      <div className="flex-1 min-h-[100px] overflow-y-auto custom-scrollbar pr-1.5 relative bg-white/30 backdrop-blur-xl rounded-xl p-2 border border-white/50 shadow-sm">
         {isPending && (
           <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
             <span className="text-primary text-sm font-bold animate-pulse">데이터 업데이트 중...</span>
