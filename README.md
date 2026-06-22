@@ -5,7 +5,8 @@
 
 ## 📷 결과물 미리보기
 
-(여기에 완성된 Todo 앱 스크린샷 이미지 링크를 삽입하세요.)
+<img width="1958" height="1188" alt="image" src="https://github.com/user-attachments/assets/b0582974-1356-484d-a1ba-1994a1b829bf" />
+
 
 ---
 
