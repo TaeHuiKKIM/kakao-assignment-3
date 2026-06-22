@@ -20,16 +20,16 @@ export default function WeeklyCalendar({ selectedDate, setSelectedDate, todos }:
   const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <div className="bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-100">
-      <div className="flex justify-between items-center mb-4">
-        <button onClick={handlePrevWeek} className="p-2 text-gray-500 hover:bg-gray-200 rounded-full transition-colors">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+    <div className="bg-white/40 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-white/60">
+      <div className="flex justify-between items-center mb-5">
+        <button onClick={handlePrevWeek} className="p-2 text-gray-500 hover:bg-white/60 hover:shadow rounded-full transition-all active:scale-95">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7"></path></svg>
         </button>
-        <span className="font-bold text-gray-700">
+        <span className="font-extrabold text-lg text-gray-800 tracking-tight">
           {selectedDate.getFullYear()}년 {selectedDate.getMonth() + 1}월
         </span>
-        <button onClick={handleNextWeek} className="p-2 text-gray-500 hover:bg-gray-200 rounded-full transition-colors">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+        <button onClick={handleNextWeek} className="p-2 text-gray-500 hover:bg-white/60 hover:shadow rounded-full transition-all active:scale-95">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
 
@@ -45,22 +45,22 @@ export default function WeeklyCalendar({ selectedDate, setSelectedDate, todos }:
             <div 
               key={dateStr}
               onClick={() => setSelectedDate(day)}
-              className={`flex flex-col items-center justify-center py-2 rounded-lg cursor-pointer transition-all ${
+              className={`flex flex-col items-center justify-center py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                 isSelected 
-                  ? 'bg-primary text-white shadow-md transform scale-105' 
-                  : 'hover:bg-gray-200 text-gray-600'
+                  ? 'bg-gradient-to-b from-primary to-purple-600 text-white shadow-lg shadow-purple-500/40 transform scale-110' 
+                  : 'bg-white/50 hover:bg-white hover:shadow-md text-gray-600 border border-white/40'
               }`}
             >
-              <span className={`text-xs mb-1 ${idx === 0 ? 'text-danger' : idx === 6 ? 'text-blue-500' : ''} ${isSelected ? 'text-white/80' : ''}`}>
+              <span className={`text-xs font-bold mb-1 ${idx === 0 ? 'text-pink-500' : idx === 6 ? 'text-blue-500' : ''} ${isSelected ? 'text-white/90' : ''}`}>
                 {dayNames[day.getDay()]}
               </span>
-              <span className={`text-sm ${isToday ? 'font-extrabold underline decoration-2 underline-offset-2' : 'font-semibold'}`}>
+              <span className={`text-base ${isToday ? 'font-black underline decoration-wavy decoration-2 underline-offset-4' : 'font-bold'}`}>
                 {day.getDate()}
               </span>
               <div className="mt-1 h-4 flex items-center justify-center">
                 {todoCount > 0 && (
-                  <span className={`text-[10px] px-1.5 rounded-full font-bold ${
-                    isSelected ? 'bg-white text-primary' : 'bg-primary text-white'
+                  <span className={`text-[10px] px-1.5 rounded-full font-bold shadow-sm ${
+                    isSelected ? 'bg-white text-primary' : 'bg-gradient-to-r from-primary to-purple-500 text-white'
                   }`}>
                     {todoCount}
                   </span>

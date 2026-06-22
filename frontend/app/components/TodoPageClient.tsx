@@ -53,7 +53,7 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
   const filteredByDate = initialTodos.filter(t => t.date === dateStr || !t.date);
 
   return (
-    <div className="flex flex-col h-full space-y-4">
+    <div className="flex flex-col h-full space-y-6">
       <WeeklyCalendar 
         selectedDate={selectedDate} 
         setSelectedDate={setSelectedDate} 
@@ -61,45 +61,45 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
       />
 
       {/* 검색 및 필터 */}
-      <div className="space-y-2">
+      <div className="space-y-4 bg-white/40 backdrop-blur-md rounded-2xl p-4 border border-white/60 shadow-sm">
         <input
           type="text"
           placeholder="검색어를 입력하세요..."
           defaultValue={currentSearch}
           onChange={(e) => {
-            // 디바운싱 효과를 주기 위해 setTimeout 활용 가능하지만 간단히 바로 적용
             handleSearchChange(e);
           }}
-          className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-primary"
+          className="w-full bg-white/80 border border-gray-200/60 rounded-xl p-3 outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-inner"
         />
         
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 overflow-x-auto pb-1 custom-scrollbar">
           {['all', 'active', 'completed'].map(f => (
             <button
               key={f}
               onClick={() => handleFilterChange(f)}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+              className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 transform active:scale-95 whitespace-nowrap ${
                 currentFilter === f 
-                  ? 'bg-primary text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-gradient-to-r from-primary to-purple-500 text-white shadow-lg shadow-primary/30 scale-105' 
+                  : 'bg-white/70 text-gray-600 hover:bg-white hover:shadow border border-gray-200/50'
               }`}
             >
-              {f === 'all' ? '전체' : f === 'active' ? '진행 중' : '완료'}
+              {f === 'all' ? '✨ 전체' : f === 'active' ? '🔥 진행 중' : '✅ 완료'}
             </button>
           ))}
         </div>
       </div>
 
       {/* 투두 목록 */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar pr-1 relative">
+      <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 relative bg-white/30 backdrop-blur-xl rounded-2xl p-4 border border-white/50 shadow-sm">
         {isPending && (
-          <div className="absolute inset-0 bg-white/50 flex items-center justify-center z-10 rounded-lg">
-            <span className="text-primary font-semibold">로딩 중...</span>
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">
+            <span className="text-primary font-bold animate-pulse">데이터 업데이트 중...</span>
           </div>
         )}
         {filteredByDate.length === 0 ? (
-          <div className="text-center text-gray-400 py-8">
-            할 일이 없습니다. 새로운 할 일을 추가해보세요!
+          <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-3">
+            <div className="text-4xl">📭</div>
+            <p className="font-medium">할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>
           </div>
         ) : (
           <ul className="space-y-3">
@@ -117,9 +117,9 @@ export default function TodoPageClient({ initialTodos }: { initialTodos: any[] }
 
       <button 
         onClick={() => router.push('/todos/new')}
-        className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-3 rounded-xl transition-colors shadow-md active:scale-95"
+        className="w-full bg-gradient-to-r from-primary via-purple-500 to-pink-500 hover:opacity-90 text-white font-black text-lg py-4 rounded-2xl transition-all duration-300 shadow-xl shadow-purple-500/30 transform hover:-translate-y-1 active:scale-95"
       >
-        새 할 일 추가하기
+        + 새 할 일 추가하기
       </button>
     </div>
   );
