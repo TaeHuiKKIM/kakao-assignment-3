@@ -54,7 +54,7 @@ export default function WeeklyCalendar({ selectedDate, setSelectedDate, todos }:
               <span className={`text-[10px] font-bold mb-0.5 ${idx === 0 ? 'text-pink-500' : idx === 6 ? 'text-blue-500' : ''} ${isSelected ? 'text-white/90' : ''}`}>
                 {dayNames[day.getDay()]}
               </span>
-              <span className={`text-sm ${isToday ? 'font-black underline decoration-wavy decoration-2 underline-offset-2' : 'font-bold'}`}>
+              <span className={`text-sm ${isToday ? 'font-black text-primary' : 'font-bold'} ${isSelected && isToday ? 'text-white' : ''}`}>
                 {day.getDate()}
               </span>
               <div className="mt-0.5 h-3 flex items-center justify-center">
